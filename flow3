@@ -1,0 +1,118 @@
+[
+    {
+        "id": "12802ba6.6fe244",
+        "type": "tab",
+        "label": "Flow 3"
+    },
+    {
+        "id": "e7f9a412.546e18",
+        "type": "inject",
+        "z": "12802ba6.6fe244",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "x": 110,
+        "y": 120,
+        "wires": [
+            [
+                "9d09b16e.d1d",
+                "3fe599bd.4341b6"
+            ]
+        ]
+    },
+    {
+        "id": "9d09b16e.d1d",
+        "type": "function",
+        "z": "12802ba6.6fe244",
+        "name": "payload",
+        "func": "msg.headers={\n    devicekey: \"SQ0s4ZcbNsNyA98r\"\n    };\nmsg.payload= \"Temperature,,25.3\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 292,
+        "y": 121,
+        "wires": [
+            [
+                "a83748a.51181b8"
+            ]
+        ]
+    },
+    {
+        "id": "3fe599bd.4341b6",
+        "type": "function",
+        "z": "12802ba6.6fe244",
+        "name": "payload",
+        "func": "msg.headers={\n    devicekey: \"SQ0s4ZcbNsNyA98r\"\n    };\nmsg.payload= \"Humidity,,60\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 283,
+        "y": 169,
+        "wires": [
+            [
+                "6995a6c4.367cc8"
+            ]
+        ]
+    },
+    {
+        "id": "a83748a.51181b8",
+        "type": "http request",
+        "z": "12802ba6.6fe244",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "url": "https://api.mediatek.com/mcs/v2/devices/DZbywEsW/datapoints.csv",
+        "tls": "",
+        "x": 510,
+        "y": 100,
+        "wires": [
+            [
+                "fa9b1e41.c809",
+                "be43cd5f.6f7fe"
+            ]
+        ]
+    },
+    {
+        "id": "6995a6c4.367cc8",
+        "type": "http request",
+        "z": "12802ba6.6fe244",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "url": "https://api.mediatek.com/mcs/v2/devices/DZbywEsW/datapoints.csv",
+        "tls": "",
+        "x": 510,
+        "y": 160,
+        "wires": [
+            [
+                "be43cd5f.6f7fe",
+                "fa9b1e41.c809"
+            ]
+        ]
+    },
+    {
+        "id": "fa9b1e41.c809",
+        "type": "http response",
+        "z": "12802ba6.6fe244",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 738,
+        "y": 116,
+        "wires": []
+    },
+    {
+        "id": "be43cd5f.6f7fe",
+        "type": "debug",
+        "z": "12802ba6.6fe244",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 750,
+        "y": 220,
+        "wires": []
+    }
+]
